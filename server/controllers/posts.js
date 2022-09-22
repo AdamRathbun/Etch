@@ -21,13 +21,14 @@ export const getPosts = async (req, res)=>{
 export const createPost = async (req, res) => {
     //req.body is built-in
     const post = req.body;
-    const newPost = new PostMessage(post)
+    // specifies the creator userId and creation date for each post
+    const newPostMessage = new PostMessage({ ...post, creator: req.userId, createdAt: new Date().toISOString() } )
     console.log('creating posts in controllers')
     try {
-        await newPost.save()
+        await newPostMessage.save()
 
         //201=new creation
-        res.status(201).json(newPost)
+        res.status(201).json(newPostMessage)
     } catch (error) {
         //409=conflict
         res.status(409).json({message:error.message})
@@ -68,12 +69,56 @@ export const deletePost = async (req, res) => {
 export const likePost = async (req, res) => {
     const { id } = req.params
 
-    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No post with that id, bucko.')
+    // see ln17 of ../middleware/auth.js
+    if(!req.userId) return res.json({message: 'Unauthenticated.'})
+
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No post with that id.')
 
     //returns a post matching the id
     const post = await PostMessage.findById(id)
-    //grabs post from above. and remember {new:true} b.c it's an update
-    const updatedPost = await PostMessage.findByIdAndUpdate(id, { likeCount: post.likeCount +1 }, { new: true } )
 
+    // loop through each post's likes to see userIds and if person has already liked
+    const index = post.likes.findIndex((id)=> id===String(req.userId))
+    // if the userId is not in the likes data, then like by pushing userId to likes array. else, unlike by removing userId from likes array
+    if(index===-1){
+        post.likes.push(req.userId)
+    }else{
+        // remove userId for unlike
+        post.likes.filter((id)=> id!==req.userId)
+    }
+
+    //grabs post from above. and remember {new:true} b.c it's an update
+    const updatedPost = await PostMessage.findByIdAndUpdate(id, post, { new: true } )
+    
     res.json(updatedPost);
+}
+
+
+export const getPost = async (req, res)=>{
+    const{ id } = req.params
+    try{
+        const post=await PostMessage.findById(id);
+
+        res.status(200).json(post);
+    }catch(error){
+        res.status(404).json({message: error.message})
+    }
+}
+
+export const commentPost = async (req, res) => {
+    // remember req.params is coming from the id in the url in the api/index.js
+    const { id } = req.params
+    // req.body comes from api/index.js as well, but the data that's sent via axios there
+    const { value } = req.body
+    console.log(value)
+    // finds the post the comment goes on
+    const post = await PostMessage.findById(id)
+
+    // goes into the comments for the post and pushes the comment
+    post.comments.push(value)
+
+    // update the post so that it contains the new comment, storing the updated post in a variable
+    const updatedPost = await PostMessage.findByIdAndUpdate(id, post, { new:true })
+
+    res.json(updatedPost)
 }
