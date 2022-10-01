@@ -2,14 +2,22 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
   media: {
-    borderRadius: '20px',
+    // borderRadius: '20px',
     objectFit: 'cover',
-    width: '100%',
+    // width: '100%',
+    // height: '100%',
     maxHeight: '600px',
-
+    maxWidth: '100%',
+    height: 'auto',
+    // 
+    // position: 'relative',
+    // // top: 0,
+    // // left: 0,
+    // zIndex: 1,
   },
   card: {
     display: 'flex',
+    flexDirection: 'column',
     width: '100%',
     [theme.breakpoints.down('sm')]: {
       flexWrap: 'wrap',
@@ -26,6 +34,8 @@ export default makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       marginLeft: 0,
     },
+    // display: 'flex',
+    // justifyContent: 'center'
   },
   recommendedPosts: {
     display: 'flex',
@@ -42,4 +52,89 @@ export default makeStyles((theme) => ({
   commentsInnerContainer: {
     height: '205px', overflowY: 'auto', marginRight: '29px'
   },
+
+  // canvas styling
+  generalBody: {
+    margin: '0px',
+    // padding: '30px',
+    overflow: 'hidden',
+    // take out background when done
+    // background: '#313131'
+  },
+
+  canvas: {
+    cursor: 'pointer'
+  },
+
+  tools: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'start',
+    paddingTop: '9px',
+    paddingBottom: '9px',
+  },
+
+  colorField :{
+    height: '40px',
+    width: '40px',
+    minHeight: '40px',
+    maxHeight: '40px',
+    cursor: 'pointer',
+    display: 'inline-block',
+    boxSizing: 'border-box',
+    borderRadius: '50%',
+    border: '3px solid white',
+    alignSelf: 'center',
+    margin: '0 9px',
+  },
+
+  button: {
+    alignSelf: 'center',
+    width: '80px',
+    height: '40px',
+    border: '2px solid white',
+    cursor: 'cursor',
+    color: 'white',
+    background: '#222',
+    fontWeight: 'bold',
+    margin: '0 9px',
+    borderRadius: '5%'
+  },
+
+  // 
+  colorPicker: {
+    alignSelf: 'center',
+    maring: '0 9px',
+    height: '45px',
+  },
+
+  penRange1: {
+    alignSelf: 'center',
+    margin: '0 9px',
+    height: '25px',
+    width: '25px',
+    minHeight: '25px',
+    maxHeight: '25px',
+    cursor: 'pointer',
+    display: 'inline-block',
+    boxSizing: 'border-box',
+    borderRadius: '50%',
+    border: '3px solid white',
+  },
+
+  penRange2: {
+    alignSelf: 'center',
+    margin: '0 9px',
+    height: '40px',
+    width: '40px',
+    minHeight: '40px',
+    maxHeight: '40px',
+    cursor: 'pointer',
+    display: 'inline-block',
+    boxSizing: 'border-box',
+    borderRadius: '50%',
+    border: '3px solid white',
+  },
+
+ 
 }));

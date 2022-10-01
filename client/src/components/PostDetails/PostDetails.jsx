@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react'
-import { Paper, Typography, CircularProgress, Divider } from '@material-ui/core'
+import React, {useEffect, useState} from 'react'
+import { Paper, Typography, CircularProgress, Divider, Button } from '@material-ui/core'
 import { useDispatch, useSelector } from 'react-redux'
 import moment from 'moment'
 import { useParams, useNavigate } from 'react-router-dom'
@@ -9,11 +9,19 @@ import useStyles from './styles'
 import { getPost } from '../../actions/posts'
 import baseImg from '../../images/baseImg.jpg'
 import CommentSection from './CommentSection'
+// import Editor from './Canvas/Editor'
+// import DrawingPanel from "./Canvas/DrawingPanel";
+// import { CirclePicker } from "react-color";
+
+import Canvas from './Canvas'
 
 const PostDetails = () => {
 
     // get all the post data from the useSelector. get the state.posts reducer
     const { post, posts, isLoading } = useSelector((state)=>state.posts)
+
+    // const [selectedColor, setColor] = useState("#ffeb3b");
+
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -34,6 +42,13 @@ const PostDetails = () => {
         </Paper>
     }
 
+    // canvas
+    // function changeColor(color) {
+    //     setColor(color.hex);
+    //   }
+
+
+
     return(
     <Paper style={{ padding: '20px', borderRadius:'15px' }} elevation= {6}>
         <div className={classes.card}>
@@ -44,15 +59,16 @@ const PostDetails = () => {
                 <Typography variant="h6">Created by: {post.name}</Typography>
                 <Typography variant="body1">{moment(post.createdAt).fromNow()}</Typography>
                 <Divider style={{ margin: '20px 0' }} />
-                <Typography variant="body1"><strong>Realtime Chat - coming soon</strong></Typography>
-                <Divider style={{ margin: '20px 0' }} />
-                {/* comment section */}
-                <CommentSection post={post}/>
-                <Divider style={{ margin: '20px 0' }} />
             </div>
         {/* image */}
         <div className={classes.imageSection}>
-          <img className={classes.media} src={post.selectedFile || baseImg} alt={post.title} />
+          <Canvas post={post} />
+        </div>
+        <div>
+        <Divider style={{ margin: '20px 0' }} />
+                {/* comment section */}
+                <CommentSection post={post}/>
+        <Divider style={{ margin: '20px 0' }} />
         </div>
       </div>
     </Paper>

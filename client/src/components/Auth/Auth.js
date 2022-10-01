@@ -27,7 +27,7 @@ const Auth = () =>{
     const handleSubmit=(event)=>{
         // adding an event of preventDefault b.c React refreshes page on default on form submits
         event.preventDefault()
-        console.log(formData)
+        // console.log(formData)
 
         if(isSignup){
             dispatch(signup(formData, navigate))

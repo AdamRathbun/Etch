@@ -10,8 +10,10 @@ import { createPost, updatePost } from '../../actions/posts'
 const Form = ({ currentId, setCurrentId }) => {
     // note selectedFile is image converted to string. all properties start as empty strings
     const [postData, setPostData] = useState({
-        title:'', message: '', tags: '', selectedFile: ''
+        title:'', message: '', tags: '', selectedFile: '', width: 0, height:0
     })
+    // const [dimensions, setDimensions] = useState({width: 0, height:0})
+
 
     // for Form. if there's a currentId, this looks for the post with a matching id to currentId, else null. this returns a single post that matches the currentId.
     const post = useSelector((state) => currentId ? state.posts.find((p) => p._id === currentId) : null)
@@ -59,7 +61,41 @@ const Form = ({ currentId, setCurrentId }) => {
     setCurrentId(0);
     setPostData({ title: '', message: '', tags: '', selectedFile: '' });
   };
+
+// 9.26
+
+// const getDimensions = (base64) => {
+//     let i = new Image(); 
+
+//     i.onload = function(){
+//      alert( i.width+", "+i.height );
+//     };
     
+//     i.src = base64;
+// }
+const getDimensions = (base64) => {
+    let i = new Image(); 
+
+    i.onload = function(){
+      if (i.height>=600){
+        const proportions = Number((i.height/600).toFixed(6))
+        i.height=600
+        i.width=i.width/proportions + 1
+        setPostData( prev => {
+            return {...prev, width:i.width, height:i.height}
+            });
+      }else{
+        setPostData( prev => {
+            return {...prev, width:i.width, height:i.height}
+            });
+      }
+    };
+    
+    i.src = base64;
+}
+
+// console.log(postData.width, postData.height)
+
     return (
         //Paper is like a form with a white background
         <Paper className={classes.paper}>
@@ -74,9 +110,12 @@ const Form = ({ currentId, setCurrentId }) => {
                 {/* for the image */}
                 <div className={classes.fileInput}>
                     <FileBase 
+                        id='submitImg'
                         type='file'
                         multiple={false}
-                        onDone={({base64}) => setPostData({ ...postData, selectedFile: base64 })}
+                        onDone={({base64}) => {
+                            getDimensions(base64)
+                            setPostData({ ...postData, selectedFile: base64, width: postData.width, height: postData.height })}}
                     />
                 </div>
                 <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
@@ -88,3 +127,14 @@ const Form = ({ currentId, setCurrentId }) => {
 }
 
 export default Form
+
+
+// more
+
+// var i = new Image(); 
+
+// i.onload = function(){
+//  alert( i.width+", "+i.height );
+// };
+
+// i.src = imageData; 

@@ -8,7 +8,7 @@ export const getPosts = async (req, res)=>{
     try{
         const postMessages=await PostMessage.find();
 
-        console.log(postMessages);
+        // console.log(postMessages);
 
         //returning postMessages as an array after a 200 OK status
         res.status(200).json(postMessages);
@@ -98,7 +98,7 @@ export const getPost = async (req, res)=>{
     const{ id } = req.params
     try{
         const post=await PostMessage.findById(id);
-
+        
         res.status(200).json(post);
     }catch(error){
         res.status(404).json({message: error.message})
@@ -110,7 +110,7 @@ export const commentPost = async (req, res) => {
     const { id } = req.params
     // req.body comes from api/index.js as well, but the data that's sent via axios there
     const { value } = req.body
-    console.log(value)
+    // console.log(value)
     // finds the post the comment goes on
     const post = await PostMessage.findById(id)
 

@@ -1,6 +1,8 @@
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import User from '../models/user.js'
+import dotenv from 'dotenv'
+
 
 
 // bcrypt hashes the password
@@ -8,6 +10,8 @@ import User from '../models/user.js'
 
 export const signin = async(req, res)=>{
     const {email, password} = req.body;
+
+    dotenv.config()
 
     try {
         const alreadyUser=await User.findOne({email})
@@ -19,7 +23,7 @@ export const signin = async(req, res)=>{
         if(!isPasswordCorrect) return res.status(400).json({message:'Invalid login.'})
 
         // note the secret is the second argument (currently 'Test'). it should be JWT_SECRET in .env file
-        const token=jwt.sign({email :alreadyUser.email, id: alreadyUser._id}, 'Test', {expiresIn: '1h' })
+        const token=jwt.sign({email :alreadyUser.email, id: alreadyUser._id}, process.env.JWT_SECRET, {expiresIn: '2h' })
 
         res.status(200).json({result: alreadyUser, token})
     } catch (error) {
@@ -29,6 +33,8 @@ export const signin = async(req, res)=>{
 
 export const signup = async(req, res)=>{
     const { email, password, confirmPassword, firstName, lastName } = req.body
+
+    dotenv.config()
 
     try {
         const alreadyUser=await User.findOne({email})
@@ -43,7 +49,7 @@ export const signup = async(req, res)=>{
         const result = await User.create({email, password: hashedPassword, name: `${firstName} ${lastName}`})
 
         // again, need to update 'Test' like above, with a JWT_SECRET in .env
-        const token = jwt.sign({email: result.email, id: result._id}, 'Test', {expiresIn: '1h' })
+        const token = jwt.sign({email: result.email, id: result._id}, process.env.JWT_SECRET, {expiresIn: '1h' })
 
         // not result:result
         res.status(200).json({result, token})

@@ -16,7 +16,9 @@ const postSchema = mongoose.Schema({
         type: Date,
         default: new Date()
     },
-    comments: { type: [String], default: [] }
+    comments: { type: [String], default: [] },
+    width: Number,
+    height: Number,
 })
 
 const PostMessage = mongoose.model('PostMessage', postSchema)
