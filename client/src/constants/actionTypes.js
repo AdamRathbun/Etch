@@ -7,3 +7,4 @@ export const AUTH = 'AUTH'
 export const LOGOUT = 'LOGOUT'
 export const FETCH_POST = 'FETCH_POST'
 export const COMMENT = 'COMMENT'
+// export const UPDATEIMAGE = 'UPDATEIMAGE';

@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react'
 // import { Typography, TextField, Button } from '@material-ui/core'
-// import { useDispatch } from 'react-redux'
-import { CirclePicker } from "react-color";
+import { useDispatch } from 'react-redux'
+import { updatePost } from '../../actions/posts'
+// import { CirclePicker } from "react-color";
 
 import useStyles from './styles'
 // import { commentPost } from '../../actions/posts'
 
-// taking out { post } from ({ post }) for now but will have to set up dispatching the canvas data to the post object and retrieving it later
 const Canvas = ( { post } ) => {
     const classes=useStyles()
+    const dispatch = useDispatch();
 
     // const [width, setWidth] = useState(post.width)
-
     
     useEffect(() => {
         if(document.getElementById('canvas')){
@@ -57,6 +57,12 @@ const Canvas = ( { post } ) => {
             // clear and undo
             document.querySelector('.clearCanvas').addEventListener('click', clearCanvas)
             document.querySelector('.undoCanvas').addEventListener('click', undoCanvas)
+
+            // save canvas
+            document.querySelector('.saveCanvas').addEventListener('click', saveCanvas)
+
+            // page load paint canvas with image
+            document.addEventListener('beforeunload', copyImageToCanvas)
         
             function start(event){
                 is_drawing=true;
@@ -95,7 +101,7 @@ const Canvas = ( { post } ) => {
                 event.preventDefault()
 
                 // draw path/restore
-                if (event.type!='mouseout'){
+                if (event.type!=='mouseout'){
                     restoreArray.push(context.getImageData(0, 0, canvas.width, canvas.height))
                     restoreIndex+=1
                 }
@@ -124,40 +130,47 @@ const Canvas = ( { post } ) => {
             }
         }
 
+        // save canvas
+        function saveCanvas(){
+            let editedImg=canvas.toDataURL("image/jpeg", 1.0)
+ 
+            dispatch(updatePost(post._id, {...post, selectedFile: editedImg }));
+        }
+
         // copying image to function
         function copyImageToCanvas(){
-            let img = new Image;
+            let img = new Image()
             img.src = post.selectedFile
             context.drawImage(
                 img, 0, 0, canvas.width, canvas.height
             )
         }
 
-        setTimeout(()=>{
-            copyImageToCanvas()
-        }, 300)
+        // setTimeout(()=>{
+        //     copyImageToCanvas()
+        // })
+
+        canvas.onload = copyImageToCanvas();
 
         }
 
-        console.log(post.selectedFile)
+        // console.log(post.selectedFile)
         
     }, [])
 
     return (
         <div>
             <div className={classes.field+' '+classes.generalBody}>
-                {/* NOTE will probs need to import this into PostDetails separately, with like 15% opacity, into one div with post image just add all the canvasTools as a separate one OR!!!! I can just import the post object image here*/}
+
                 <canvas className={classes.canvas} id='canvas' ></canvas>
                 <div className={classes.tools}>
                     <button className={`undoCanvas ${classes.button}`} type='button'>Undo</button>
                     <button className={`clearCanvas ${classes.button}`} type='button'>Clear</button>
+                    <button className={`saveCanvas ${classes.button}`} type='button'>Save</button>
                     
                     <div className={`yellow ${classes.colorField}`} style={{ background: '#fded64' }}></div>
                     <div className={`red ${classes.colorField}`} style={{ background: '#d94645' }}></div>
-                    {/* <CirclePicker color={selectedColor} onChangeComplete={changeColor} /> */}
-                    
-                    {/* <input className={classes.colorPicker} type='color'></input> */}
-                    {/* <input className={`pen ${classes.penRange}`} type='range' min='5' max='80' onInput={draw_width=this.value}></input> */}
+
                     <div className={`penRange1 ${classes.penRange1}`} style={{ background: 'black' }}></div>
                     <div className={`penRange2 ${classes.penRange2}`} style={{ background: 'black' }}></div>
 

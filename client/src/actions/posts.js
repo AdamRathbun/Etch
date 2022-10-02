@@ -90,3 +90,15 @@ export const commentPost = (value, id) => async (dispatch) => {
         console.log(error)
     }
 }
+
+// for updating image with canvas
+// export const updateImage = (id, post) => async (dispatch) => {
+//     try {
+//         // this is awaiting the api to return the updated project post
+//         const { data } = await api.updatePost(id, post)
+
+//         dispatch({ type: UPDATEIMAGE, payload: data })
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }

@@ -28,8 +28,10 @@ const PostDetails = () => {
     const classes = useStyles()
     // project id
     const { id } = useParams()
-
+    // console.log(id)
     // tied to API that grabs the specific post info in actions/posts.js
+
+
     useEffect(()=>{
         dispatch(getPost(id))
     }, [id])

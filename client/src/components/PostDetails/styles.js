@@ -93,7 +93,7 @@ export default makeStyles((theme) => ({
     width: '80px',
     height: '40px',
     border: '2px solid white',
-    cursor: 'cursor',
+    cursor: 'pointer',
     color: 'white',
     background: '#222',
     fontWeight: 'bold',
