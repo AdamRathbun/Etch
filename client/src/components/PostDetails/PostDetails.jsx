@@ -9,9 +9,8 @@ import useStyles from './styles'
 import { getPost } from '../../actions/posts'
 import baseImg from '../../images/baseImg.jpg'
 import CommentSection from './CommentSection'
-// import Editor from './Canvas/Editor'
-// import DrawingPanel from "./Canvas/DrawingPanel";
-// import { CirclePicker } from "react-color";
+import { updatePost } from '../../actions/posts'
+
 
 import Canvas from './Canvas'
 
@@ -20,8 +19,7 @@ const PostDetails = () => {
     // get all the post data from the useSelector. get the state.posts reducer
     const { post, posts, isLoading } = useSelector((state)=>state.posts)
 
-    // const [selectedColor, setColor] = useState("#ffeb3b");
-
+    const [comments, setComments] = useState(post?.comments)
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -31,10 +29,18 @@ const PostDetails = () => {
     // console.log(id)
     // tied to API that grabs the specific post info in actions/posts.js
 
-
     useEffect(()=>{
         dispatch(getPost(id))
     }, [id])
+
+    console.log(comments)
+    // for comments. can't put it after
+    useEffect(()=>{
+        if(comments){
+            dispatch(updatePost(post._id, {...post, comments: post.comments}));
+        }
+    }, [comments])
+    // console.log(post.comments)
 
     if(!post) return null;
 
@@ -44,12 +50,8 @@ const PostDetails = () => {
         </Paper>
     }
 
-    // canvas
-    // function changeColor(color) {
-    //     setColor(color.hex);
-    //   }
 
-
+console.log(post.comments)
 
     return(
     <Paper style={{ padding: '20px', borderRadius:'15px' }} elevation= {6}>
@@ -64,7 +66,7 @@ const PostDetails = () => {
             </div>
         {/* image */}
         <div className={classes.imageSection}>
-          <Canvas post={post} />
+          <Canvas post={post} comments={comments}/>
         </div>
         <div>
         <Divider style={{ margin: '20px 0' }} />

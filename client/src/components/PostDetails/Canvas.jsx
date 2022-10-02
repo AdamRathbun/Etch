@@ -7,7 +7,7 @@ import { updatePost } from '../../actions/posts'
 import useStyles from './styles'
 // import { commentPost } from '../../actions/posts'
 
-const Canvas = ( { post } ) => {
+const Canvas = ( { post, comments } ) => {
     const classes=useStyles()
     const dispatch = useDispatch();
 
@@ -123,6 +123,8 @@ const Canvas = ( { post } ) => {
             if (restoreIndex<=0){
                 clearCanvas()
             }else{
+                console.log(post.comments)
+
                 restoreIndex-=1
                 restoreArray.pop()
                 // restores data from last spot
@@ -134,7 +136,7 @@ const Canvas = ( { post } ) => {
         function saveCanvas(){
             let editedImg=canvas.toDataURL("image/jpeg", 1.0)
  
-            dispatch(updatePost(post._id, {...post, selectedFile: editedImg }));
+            dispatch(updatePost(post._id, {...post, selectedFile: editedImg, comments:comments}));
         }
 
         // copying image to function
