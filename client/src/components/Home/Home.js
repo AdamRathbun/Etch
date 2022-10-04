@@ -33,11 +33,11 @@ const Home = () => {
             {/* took out className={classes.mainContainer}  */}
             <Grid container justifyContent='space-between' alignItems='stretch' spacing={3}>
                 {/* excess 12/12 spaces means full width on extra small devices, 7/12 width on small to medium devices*/}
-                <Grid item xs={12} sm={7}>
-                    <Posts setCurrentId={setCurrentId}/>
-                </Grid>
                 <Grid item xs={12} sm={4}>
                     <Form currentId={currentId} setCurrentId={setCurrentId}/>
+                </Grid>
+                <Grid item xs={12} sm={7}>
+                    <Posts setCurrentId={setCurrentId}/>
                 </Grid>
             </Grid>
         </Container>
