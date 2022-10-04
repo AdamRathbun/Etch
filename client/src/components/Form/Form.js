@@ -10,7 +10,7 @@ import { createPost, updatePost } from '../../actions/posts'
 const Form = ({ currentId, setCurrentId }) => {
     // note selectedFile is image converted to string. all properties start as empty strings
     const [postData, setPostData] = useState({
-        title:'', message: '', tags: '', selectedFile: '', width: 0, height:0
+        title:'', message: '', tags: '', selectedFile: '', width: 0, height:0, version: 1
     })
     // const [dimensions, setDimensions] = useState({width: 0, height:0})
 
@@ -59,7 +59,7 @@ const Form = ({ currentId, setCurrentId }) => {
     // for clear button
   const clear = () => {
     setCurrentId(0);
-    setPostData({ title: '', message: '', tags: '', selectedFile: '' });
+    setPostData({ title: '', message: '', tags: '', selectedFile: '', width: 0, height:0, version: 1 });
   };
 
 // 9.26

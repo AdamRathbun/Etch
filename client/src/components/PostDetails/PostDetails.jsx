@@ -21,6 +21,10 @@ const PostDetails = () => {
 
     const [comments, setComments] = useState(post?.comments)
 
+    // for image version control
+    // const [selectedFile, setSelectedFile] = useState(post?.selectedFile)
+    const [version, setVersion] = useState(post?.version)
+
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const classes = useStyles()
@@ -33,7 +37,6 @@ const PostDetails = () => {
         dispatch(getPost(id))
     }, [id])
 
-    console.log(comments)
     // for comments. can't put it after
     useEffect(()=>{
         if(comments){
@@ -41,6 +44,11 @@ const PostDetails = () => {
         }
     }, [comments])
     // console.log(post.comments)
+
+    // for image version control
+    // useEffect(()=>{
+    //     setVersion((prev=>prev+1))
+    // }, [version])
 
     if(!post) return null;
 
@@ -50,8 +58,7 @@ const PostDetails = () => {
         </Paper>
     }
 
-
-console.log(post.comments)
+// console.log(post.comments)
 
     return(
     <Paper style={{ padding: '20px', borderRadius:'15px' }} elevation= {6}>
@@ -66,7 +73,7 @@ console.log(post.comments)
             </div>
         {/* image */}
         <div className={classes.imageSection}>
-          <Canvas post={post} comments={comments}/>
+          <Canvas post={post} comments={comments} version={version}/>
         </div>
         <div>
         <Divider style={{ margin: '20px 0' }} />

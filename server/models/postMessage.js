@@ -19,6 +19,7 @@ const postSchema = mongoose.Schema({
     comments: { type: [String], default: [] },
     width: Number,
     height: Number,
+    version: Number,
 })
 
 const PostMessage = mongoose.model('PostMessage', postSchema)

@@ -7,7 +7,7 @@ import { updatePost } from '../../actions/posts'
 import useStyles from './styles'
 // import { commentPost } from '../../actions/posts'
 
-const Canvas = ( { post, comments } ) => {
+const Canvas = ( { post, comments, version } ) => {
     const classes=useStyles()
     const dispatch = useDispatch();
 
@@ -123,7 +123,7 @@ const Canvas = ( { post, comments } ) => {
             if (restoreIndex<=0){
                 clearCanvas()
             }else{
-                console.log(post.comments)
+                // console.log(post.comments)
 
                 restoreIndex-=1
                 restoreArray.pop()
@@ -134,9 +134,19 @@ const Canvas = ( { post, comments } ) => {
 
         // save canvas
         function saveCanvas(){
+            // if (post.version===version){
+            //     let editedImg=canvas.toDataURL("image/jpeg", 1.0)
+ 
+            //     dispatch(updatePost(post._id, {...post, selectedFile: editedImg, comments:comments}));
+            //     alert('Changes saved!')
+            //     console.log(post.version, version)
+            // }else{
+            //     alert('Image outdated, refresh.')
+            // }
             let editedImg=canvas.toDataURL("image/jpeg", 1.0)
  
             dispatch(updatePost(post._id, {...post, selectedFile: editedImg, comments:comments}));
+            alert('Changes saved!')
         }
 
         // copying image to function
@@ -152,11 +162,19 @@ const Canvas = ( { post, comments } ) => {
         //     copyImageToCanvas()
         // })
 
-        canvas.onload = copyImageToCanvas();
+        // const isCanvasBlank = function() {
+        //     const pixelBuffer = new Uint32Array(
+        //       context.getImageData(0, 0, canvas.width, canvas.height).data.buffer
+        //     );
+          
+        //     return !pixelBuffer.some(color => color !== 0);
+        //   }
+        //   console.log(isCanvasBlank())
+
+        window.onload = copyImageToCanvas()
+        // canvas.onload = copyImageToCanvas()
 
         }
-
-        // console.log(post.selectedFile)
         
     }, [])
 

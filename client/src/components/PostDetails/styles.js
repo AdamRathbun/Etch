@@ -63,7 +63,7 @@ export default makeStyles((theme) => ({
   },
 
   canvas: {
-    cursor: 'pointer'
+    cursor: "pointer",
   },
 
   tools: {
@@ -97,8 +97,29 @@ export default makeStyles((theme) => ({
     color: 'white',
     background: '#222',
     fontWeight: 'bold',
-    margin: '0 9px',
-    borderRadius: '5%'
+    // margin: '0 9px',
+    borderRadius: '5%',
+
+    transitionDuration: '0.4s',
+    position: 'relative',
+    '&:hover': {
+      transitionDuration: '0.1s',
+      backgroundColor: '#3A3A3A',
+      transition: 'all 0.5s',
+      // boxShadow: '0 0 1px 40px white',
+      '&:after': {
+        boxShadow: '0 0 0 0 white',
+        position: 'absolute',
+        borderRadius: '4em',
+        left: 0,
+        top:0,
+        opacity: 1,
+        transition: '0s',
+      },
+    },
+    '&:active': {
+      top: '2px',
+    },
   },
 
   // 
