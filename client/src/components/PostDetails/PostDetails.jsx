@@ -10,7 +10,7 @@ import { getPost } from '../../actions/posts'
 import baseImg from '../../images/baseImg.jpg'
 import CommentSection from './CommentSection'
 import { updatePost } from '../../actions/posts'
-
+import ShareFunction from './ShareFunction'
 
 import Canvas from './Canvas'
 
@@ -37,13 +37,16 @@ const PostDetails = () => {
         dispatch(getPost(id))
     }, [id])
 
+    // localStorage.getItem('profile', JSON.stringify({ ...action?.data }))
+    // let profile=localStorage.getItem('profile')
+    // console.log(JSON.parse(profile).result._id)
+
     // for comments. can't put it after
     useEffect(()=>{
         if(comments){
             dispatch(updatePost(post._id, {...post, comments: post.comments}));
         }
     }, [comments])
-    // console.log(post.comments)
 
     // for image version control
     // useEffect(()=>{
@@ -60,6 +63,7 @@ const PostDetails = () => {
 
 // console.log(post.comments)
 
+
     return(
     <Paper style={{ padding: '20px', borderRadius:'15px' }} elevation= {6}>
         <div className={classes.card}>
@@ -69,6 +73,7 @@ const PostDetails = () => {
                 <Typography gutterbottom="true" variant="body1" component="p">{post.message}</Typography>
                 <Typography variant="h6">Created by: {post.name}</Typography>
                 <Typography variant="body1">{moment(post.createdAt).fromNow()}</Typography>
+                <ShareFunction post={post}/>
                 <Divider style={{ margin: '20px 0' }} />
             </div>
         {/* image */}

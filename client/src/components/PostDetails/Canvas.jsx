@@ -50,7 +50,7 @@ const Canvas = ( { post, comments, version } ) => {
             document.querySelector('.yellow').addEventListener('click', ()=>{draw_color='#fded64'})
             document.querySelector('.red').addEventListener('click', ()=>{draw_color='#d94645'})
 
-            // change pen range
+            // change pen size
             document.querySelector('.penRange1').addEventListener('click', ()=>{draw_width=6})
             document.querySelector('.penRange2').addEventListener('click', ()=>{draw_width=18})
 
@@ -117,6 +117,14 @@ const Canvas = ( { post, comments, version } ) => {
             restoreIndex=-1
             copyImageToCanvas()
         }
+        
+        // async function clearCanvas(){
+        //     await context.clearRect(0, 0, canvas.width, canvas.height);
+
+        //     restoreArray=[]
+        //     restoreIndex=-1
+        //     copyImageToCanvas()
+        // }
 
         // undo 
         function undoCanvas(){
@@ -171,8 +179,8 @@ const Canvas = ( { post, comments, version } ) => {
         //   }
         //   console.log(isCanvasBlank())
 
-        window.onload = copyImageToCanvas()
-        // canvas.onload = copyImageToCanvas()
+        // window.onload = copyImageToCanvas()
+        canvas.onload = copyImageToCanvas()
 
         }
         

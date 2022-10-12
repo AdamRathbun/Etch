@@ -2,27 +2,12 @@ import mongoose from 'mongoose';
 import PostMessage from '../models/postMessage.js'
 
 
-//get posts. async b.c it takes time to grab the data
-export const getPosts = async (req, res)=>{
-    
-    try{
-        const postMessages=await PostMessage.find().sort({$natural:-1});
-
-        // console.log(postMessages);
-
-        //returning postMessages as an array after a 200 OK status
-        res.status(200).json(postMessages);
-    }catch(error){
-        res.status(404).json({message: error.message})
-    }
-}
-
 //create posts. 
 export const createPost = async (req, res) => {
     //req.body is built-in
     const post = req.body;
     // specifies the creator userId and creation date for each post
-    const newPostMessage = new PostMessage({ ...post, creator: req.userId, createdAt: new Date().toISOString() } )
+    const newPostMessage = new PostMessage({ ...post, creator: req.userId, createdAt: new Date().toISOString(), users: [req.userId]  } )
     console.log('creating posts in controllers')
     try {
         await newPostMessage.save()
@@ -122,3 +107,52 @@ export const commentPost = async (req, res) => {
 
     res.json(updatedPost)
 }
+
+
+// update comment
+// export const updateComment = async (req, res) => {
+//     //desctructuring + renaming id to _id for mongoose id
+//     const { id: _id } = req.params;
+
+//     const post = req.body;
+
+//     //check if a post with that id exists
+//     if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No post with that id, bucko.')
+
+//     //if that post id is valid, then update the post
+//     //note the update data would come from req.body from above (note it's data from frontend). new: true so it gets the updated version of the post.
+//     //also updated findByIdAndUpdate(_id, post, { new: true } to current
+//     const updatedComment = await PostMessage.findByIdAndUpdate(_id, {...post, _id}, { new: true })
+    
+//     res.json(updatedComment)
+// }
+
+
+//get posts. async b.c it takes time to grab the data
+export const getPosts = async (req, res)=>{
+    
+    try{
+        // const postMessages=await PostMessage.find().sort({$natural:-1});
+
+        const postMessages = await PostMessage.find({ users: req.userId }) 
+
+        //returning postMessages as an array after a 200 OK status
+        res.status(200).json(postMessages);
+    }catch(error){
+        res.status(404).json({message: error.message})
+    }
+}
+
+//get posts alt where it's not by userId custom feed but all posts in descending order
+// export const getPosts = async (req, res)=>{
+    
+//     try{
+//         const postMessages=await PostMessage.find().sort({$natural:-1});
+//         // const{ user } = req.params
+
+//         //returning postMessages as an array after a 200 OK status
+//         res.status(200).json(postMessages);
+//     }catch(error){
+//         res.status(404).json({message: error.message})
+//     }
+// }

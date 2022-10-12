@@ -1,5 +1,5 @@
 import express from 'express';
-import {getPosts, createPost, updatePost, deletePost, likePost, getPost, commentPost} from '../controllers/posts.js'
+import {getPosts, createPost, updatePost, deletePost, likePost, getPost, commentPost } from '../controllers/posts.js'
 import auth from '../middleware/auth.js'
 
 const router = express.Router();
@@ -8,7 +8,7 @@ const router = express.Router();
 //note urls match client/src/api/index.js
 
 //route for getting posts, need to change from all feed to feed of projects that I'm on. router.get('/:id', getPost) etc.
-router.get('/', getPosts)
+router.get('/', auth, getPosts)
 
 //route for creating posts
 router.post('/', auth, createPost)
@@ -28,6 +28,12 @@ router.get('/:id', getPost)
 
 //route for creating comments
 router.post('/:id/commentPost', auth, commentPost)
+
+// route for updating comments
+// router.patch('/:id/updateComment', auth, updateComment)
+
+//route for custom feed
+// router.get('/:id', auth, getFeed)
 
 export default router;
 

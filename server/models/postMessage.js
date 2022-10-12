@@ -16,10 +16,17 @@ const postSchema = mongoose.Schema({
         type: Date,
         default: new Date()
     },
-    comments: { type: [String], default: [] },
+    // comments: { type: [String], default: [] },
+    comments: [
+        {
+            content: String,
+            resolved: Boolean,
+        }
+    ],
     width: Number,
     height: Number,
     version: Number,
+    users: [String],
 })
 
 const PostMessage = mongoose.model('PostMessage', postSchema)

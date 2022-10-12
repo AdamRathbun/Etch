@@ -25,6 +25,7 @@ const Home = () => {
         //note dependency array triggers getPosts refresh on every dispatch and whenever the currentId changes. Even though this triggers getPosts refresh without currentId, I added it anyways. currentId ties to the clear function in components/Form/Form.js b.c that changes the Id on a clear.
     }, [currentId, dispatch])
 
+
     return (
         // note Grow is simple animation
         <Grow in>

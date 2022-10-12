@@ -157,5 +157,39 @@ export default makeStyles((theme) => ({
     border: '3px solid white',
   },
 
- 
+  checkMark: {
+    // marginTop: '2px',
+    width: '1.5em',
+    length: '1.5em',
+  },
+
+  resolveBtn:{
+    cursor: 'pointer',
+  },
+
+  getIdSection:{
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'start',
+    marginTop: '8px',
+  },
+
+  enterIdSection:{
+    marginTop: '15px',
+    width: '250px',
+    // height: '30px',
+  },
+
+  containIdSection:{
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'start',
+  },
+
+  addIdButton:{
+    height: '40px',
+    marginTop: '30px',
+    marginLeft: '20px',
+  },
+
 }));

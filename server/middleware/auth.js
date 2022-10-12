@@ -8,7 +8,7 @@ const auth = async (req, res, next) => {
 
     try {
         // grabbing token (JWT) from the frontend to check before an user likes, deletes, etc. matches client/src/api/index.js ln9
-        const token = req.headers.authorization.split(' ')[1]
+        const token = req.headers.authorization ? req.headers.authorization.split(' ')[1] : null
 
         let decodedData;
 

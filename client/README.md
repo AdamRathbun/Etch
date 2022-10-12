@@ -10,7 +10,6 @@ Etch is a creative collaboration tool that helps people who are working remotely
 After making an account and logging in, users can create projects (with key project details like image, title, description, etc.). Users can then click on a project to open it up, where they can mark up the design image with various drawing tools and write comments for creative changes. Additional features include approvals, project deletion, sharing, and authentication.
 
 ## Optimizations
-*(optional)*
 
 Given more time, I would've liked to include an additional "sticky comment" feature that allows the user to attach a comment to a sticky on the image that highlights the connected comment when clicked on. This may be in the form nested objects that share an id.
 

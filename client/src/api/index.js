@@ -13,6 +13,7 @@ API.interceptors.request.use((req)=>{
 })
 
 export const fetchPosts = () => API.get('/posts');
+// export const fetchPosts = (id) => API.get(`/posts/${id}`);
 
 // newPost is a callback for the entire new post. in axios, first parameter = url, and second = data I'm sending
 //tied to actions/posts.js ln22 and components/Form/Form.js ln22
