@@ -6,7 +6,7 @@ import { updatePost } from '../../actions/posts'
 
 import { useDispatch } from 'react-redux'
 
-const ShareFunction = ({ post }) => {
+const ShareFunction = ({ post, userId }) => {
     const classes=useStyles()
     // const [post, setpost] = useState(post)
 
@@ -18,31 +18,37 @@ const ShareFunction = ({ post }) => {
     const dispatch = useDispatch()
 
     // const [comment, setComment] = useState('')
-    const user = JSON.parse(localStorage.getItem('profile')).result._id
-    
+    // const user = localStorage.getItem('profile') ? JSON.parse(localStorage.getItem('profile')).result._id : null
+    // console.log(userA)
+    const user = userId
+
     const getId = function() {
         setShowId(prev=>!prev)
     }
 
-    const addUser = async (e) => {
-        setFormData(prev => [...prev, newId]);
+    const addUser = () => {
+        // setFormData(prev => [...prev, newId]);
         dispatch(updatePost(post._id, {...post, users: formData }));
+        // alert('User added!')
     }
-
+    // console.log(post.users)
+    // console.log(formData)
     return (
         <div>
-            <div className={classes.getIdSection}>
-                <Button width='15px' color='primary' variant='contained' onClick={getId}>
-                    Show Id
-                </Button>
-                <Typography style={{ marginLeft: '8px' }} gutterbottom="true" variant='h6'>{showId ? `${user}` : null}</Typography>
-            </div>
             {/* <form className={classes.form} >Enter Id</form> */}
             <div className={classes.containIdSection} >
-                <TextField className={classes.enterIdSection} variant='outlined' label='Copy user id to add them' value={newId} onChange={(e)=> setNewId(e.target.value)}/>
-                <Button className={classes.addIdButton} width='15px' height='auto' color='primary' variant='contained' onClick={addUser}>
+                {/* <TextField className={classes.enterIdSection} variant='outlined' label='Copy user id to add them' value={newId} onChange={(e)=> setNewId(e.target.value)}/> */}
+                <Button className={classes.addIdButton} height='auto' color='primary' variant='contained' onClick={addUser}>
                     Add user
                 </Button>
+                <TextField className={classes.enterIdSection} variant='outlined' label='Copy User ID Here' onChange={(e)=> setFormData(prev => [...prev, e.target.value])}/>
+            </div>
+
+            <div className={classes.containIdSection}>
+                <Button className={classes.showIdButton} color='primary' variant='contained' onClick={getId}>
+                    Show Id
+                </Button>
+                <Typography className={classes.getIdSection} gutterbottom="true" variant='h6'>{showId ? `${user}` : null}</Typography>
             </div>
         </div>
     )

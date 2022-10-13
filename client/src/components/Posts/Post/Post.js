@@ -13,6 +13,8 @@ import { deletePost, likePost } from '../../../actions/posts'
 
 import baseImg from '../../../images/baseImg.jpg'
 
+import ShareFunction from '../../PostDetails/ShareFunction'
+
 // destructuring the prop to just post
 const Post = ( {post, setCurrentId} ) => {
     const classes = useStyles()
@@ -23,6 +25,8 @@ const Post = ( {post, setCurrentId} ) => {
     const navigate = useNavigate()
 
     const user = JSON.parse(localStorage.getItem('profile'))
+
+    const userId = localStorage.getItem('profile') ? JSON.parse(localStorage.getItem('profile')).result._id : 'Not logged in.'
 
     const openPost = () => { navigate(`/posts/${post._id}`) }
 
@@ -59,18 +63,21 @@ const Post = ( {post, setCurrentId} ) => {
                     <Typography variant='body2' color='textSecondary' component='p' >{post.message}</Typography>
                 </CardContent>
         </ButtonBase>
+                <div>
+                    <ShareFunction post={post} userId={userId} />
+                </div>
                 {/* like button (and count) and delete button */}
                 <CardActions className={classes.cardActions}>
-                    <Button size='small' color="primary" disabled={!user?.result} onClick={() => dispatch(likePost(post._id))}>
-                        <ThumbUpAltIcon fontSize='small' />
+                    <Button size='medium' color="primary" disabled={!user?.result} onClick={() => dispatch(likePost(post._id))}>
+                        <ThumbUpAltIcon fontSize='medium' />
                         {/* &nbsp; is code for space */}
                         &nbsp; Approve &nbsp;
                         {post.likes.length}
                     </Button>
                     {/* for deleting posts. only creator can delete */}
                     {(user?.result?._id===post?.creator) && (
-                    <Button size='small' color="primary" onClick={() => dispatch(deletePost(post._id))}>
-                    <DeleteIcon fontSize='small' />
+                    <Button size='medium' color="primary" onClick={() => dispatch(deletePost(post._id))}>
+                    <DeleteIcon fontSize='medium' />
                     &nbsp; Delete
                     </Button>
                     )}

@@ -174,11 +174,6 @@ export default makeStyles((theme) => ({
     marginTop: '8px',
   },
 
-  enterIdSection:{
-    marginTop: '15px',
-    width: '250px',
-    // height: '30px',
-  },
 
   containIdSection:{
     display: 'flex',
@@ -186,10 +181,31 @@ export default makeStyles((theme) => ({
     justifyContent: 'start',
   },
 
+  enterIdSection:{
+    marginTop: '15px',
+    width: '250px',
+    marginLeft: '20px',
+    // height: '30px',
+  },
+  getIdSection:{
+    marginTop: '33px',
+    width: '250px',
+    marginLeft: '22px',
+    fontSize: '16px',
+  },
+
   addIdButton:{
     height: '40px',
+    width: '140px',
     marginTop: '30px',
-    marginLeft: '20px',
+    marginLeft: '14px',
+  },
+  
+  showIdButton:{
+    height: '40px',
+    width: '140px',
+    marginLeft: '14px',
+    marginTop: '15px',
   },
 
 }));
