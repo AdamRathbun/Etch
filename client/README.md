@@ -1,5 +1,5 @@
 # Etch
-Etch is a creative collaboration tool that helps people who are working remotely get their design projects where they need to be. Users can make an account, log in, and mark up and comment on each other's designs for creative editing. 
+Etch is a creative collaboration tool that helps people who are working remotely get their design projects where they need to be. Users can make an account, log in, and create projects that they can then share, mark up and comment for creative editing. 
 
 <!-- **Link to project:**  -->
 
@@ -7,7 +7,7 @@ Etch is a creative collaboration tool that helps people who are working remotely
 
 **Tech used:** JavaScript, React, MongoDB, Mongoose, Node, Express, Redux, HTML, CSS, and Canvas
 
-After making an account and logging in, users can create projects (with key project details like image, title, description, etc.). Users can then click on a project to open it up, where they can mark up the design image with various drawing tools and write comments for creative changes. Additional features include approvals, project deletion, sharing, and authentication.
+After making an account and logging in, users can create projects (with key project details like image, title, description, etc.). Users can then click on a project to open it up, where they can mark up the design image with various drawing tools and write comments for creative changes. Additional features include approvals, project deletion, project sharing, and authentication.
 
 ## Optimizations
 
