@@ -7,20 +7,19 @@ import * as api from '../api/index.js';
 //Action Creators (functions that return actions). 
 //async(dispatch) is using thunk to create async await. note exporting to ln6 in src/App.js
 //after actions, it's reducers
-
-// export const getPosts = () => async (dispatch) => {
-//     try {
-//         //from src/api/index.js-->update url later!
-//         const { data } = await api.fetchPosts()
+export const getPosts = () => async (dispatch) => {
+    try {
+        //from src/api/index.js-->update url later!
+        const { data } = await api.fetchPosts()
         
-//         //action must have type property. payload is where the data is stored. in this case, posts data.
-//         //dispatch(action) is redux thunk version of return action. as soon as it dispatches, which happens on src/App.js ln 26, within the useEffect(), it goes to reducers/posts.js (which handles the logic of fetching all posts)
-//         //shows up as action.type and action.payload. note how this ties to the posts reducer switch case
-//         dispatch({ type: FETCH_ALL, payload: data })
-//     } catch (error) {
-//         console.log(error.message)
-//     }
-// }
+        //action must have type property. payload is where the data is stored. in this case, posts data.
+        //dispatch(action) is redux thunk version of return action. as soon as it dispatches, which happens on src/App.js ln 26, within the useEffect(), it goes to reducers/posts.js (which handles the logic of fetching all posts)
+        //shows up as action.type and action.payload. note how this ties to the posts reducer switch case
+        dispatch({ type: FETCH_ALL, payload: data })
+    } catch (error) {
+        console.log(error.message)
+    }
+}
 
 // tied to api/index.js ln 10. tied to components/Form/Form.js
 export const createPost = (post) => async (dispatch) => {
@@ -91,39 +90,3 @@ export const commentPost = (value, id) => async (dispatch) => {
     }
 }
 
-// 
-// export const updateComment = (id, post) => async (dispatch) => {
-//     try {
-//         // this is awaiting the api to return the updated project post
-//         const { data } = await api.updatePost(id, post)
-
-//         dispatch({ type: UPDATE, payload: data })
-//     } catch (error) {
-//         console.log(error)
-//     }
-// }
-
-
-export const getPosts = () => async (dispatch) => {
-    try {
-        //from src/api/index.js-->update url later!
-        const { data } = await api.fetchPosts()
-        
-        //action must have type property. payload is where the data is stored. in this case, posts data.
-        //dispatch(action) is redux thunk version of return action. as soon as it dispatches, which happens on src/App.js ln 26, within the useEffect(), it goes to reducers/posts.js (which handles the logic of fetching all posts)
-        //shows up as action.type and action.payload. note how this ties to the posts reducer switch case
-        dispatch({ type: FETCH_ALL, payload: data })
-    } catch (error) {
-        console.log(error.message)
-    }
-}
-
-// export const likePost = (id) => async (dispatch) => {
-//     try {
-//         const { data } = await api.likePost(id)
-
-//         dispatch({ type: LIKE, payload: data })
-//     } catch (error) {
-//         console.log(error)
-//     }
-// }

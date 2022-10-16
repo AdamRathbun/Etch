@@ -46,8 +46,7 @@ const Form = ({ currentId, setCurrentId }) => {
             dispatch(updatePost(currentId, {...postData, name: user?.result?.name }));
             clear();
         }
-        // navigate('/')
-        // window.location.reload()
+
     }
 
     if (!user?.result?.name){

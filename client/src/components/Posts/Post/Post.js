@@ -15,6 +15,8 @@ import baseImg from '../../../images/baseImg.jpg'
 
 import ShareFunction from '../../PostDetails/ShareFunction'
 
+import GetId from '../../PostDetails/GetId'
+
 // destructuring the prop to just post
 const Post = ( {post, setCurrentId} ) => {
     const classes = useStyles()

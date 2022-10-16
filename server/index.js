@@ -24,6 +24,11 @@ app.use('/posts', postRoutes)
 // for signin/signup
 app.use('/user', userRoutes)
 
+// for hosting
+app.get('/', (req, res) => {
+    res.send('App is running.')
+})
+
 const PORT = process.env.PORT || 5500;
 
 //useNewURLParser and useUnifiedTopology deprecated

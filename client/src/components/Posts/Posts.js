@@ -19,13 +19,13 @@ const Posts = ({ setCurrentId }) => {
         !posts.length ? <CircularProgress />: (
             <Grid className={classes.container} container alignItems='stretch' spacing={3}>
                 {/* remember {} is to indicate JS logic */}
-                {posts.map((post)=>(
+                { Array.from(posts.map((post)=>(
                     // has a post ID. xs={12} means full width on mobile devices. also note the () instead of {} above
                     <Grid key={post._id} item xs={12} sm={12}>
                         {/* post prop. sends the value of each post to each post component through map method. also is passed setCurrentId */}
                         <Post post={post} setCurrentId={setCurrentId}/>
                     </Grid>
-                ))}
+                ))).reverse() }
             </Grid>
         )
     )

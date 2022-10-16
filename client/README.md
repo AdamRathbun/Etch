@@ -1,5 +1,5 @@
 # Etch
-Etch is a creative collaboration tool that helps people who are working remotely get their design projects where they need to be. Users can make an account, log in, and create projects that they can then share, mark up and comment for creative editing. 
+Etch is a creative collaboration tool that helps people who are working remotely on design projects get them where they need to be. Users can make an account, log in, and create projects that they can then share, mark up and comment for creative editing. 
 
 <!-- **Link to project:**  -->
 
@@ -7,18 +7,11 @@ Etch is a creative collaboration tool that helps people who are working remotely
 
 **Tech used:** JavaScript, React, MongoDB, Mongoose, Node, Express, Redux, HTML, CSS, and Canvas
 
-After making an account and logging in, users can create projects (with key project details like image, title, description, etc.). Users can then click on a project to open it up, where they can mark up the design image with various drawing tools and write comments for creative changes. Additional features include approvals, project deletion, project sharing, and authentication.
+After making an account and logging in, users can create projects (with key project details like image, title, description, etc.). Users can then click on a project to open it up, where they can mark up the design image with various drawing tools and write comments to designate creative changes. Additional features include approvals, project deletion, project sharing, and authentication.
 
 ## Optimizations
 
-Given more time, I would've liked to include an additional "sticky comment" feature that allows the user to attach a comment to a sticky on the image that highlights the connected comment when clicked on. This may be in the form nested objects that share an id.
-
-<!-- ## Lessons Learned:
-
-No matter what your experience level, being an engineer means continuously learning. Every time you build something you always have those *whoa this is awesome* or *fuck yeah I did it!* moments. This is where you should share those moments! Recruiters and interviewers love to see that you're self-aware and passionate about growing. -->
-
-<!-- ## Examples:
-Take a look at these couple examples that I have in my own portfolio: -->
+Given more time, I would've liked to implement proper version control. I would've also liked to include an additional "sticky comment" feature that allows the user to attach a comment to a sticky on the image that highlights the connected comment when clicked on.
 
 ## Available Scripts
 

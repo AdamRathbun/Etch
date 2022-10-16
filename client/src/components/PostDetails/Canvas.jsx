@@ -24,7 +24,6 @@ const Canvas = ( { post, comments, version } ) => {
             let context=canvas.getContext("2d")
             // console.log(context)
 
-
             context.fillStyle='white'
             context.fillRect(0, 0, canvas.width, canvas.height)
         
@@ -65,6 +64,7 @@ const Canvas = ( { post, comments, version } ) => {
             document.addEventListener('beforeunload', copyImageToCanvas)
         
             function start(event){
+                // console.log('start event')
                 is_drawing=true;
                 context.beginPath();
 
@@ -77,6 +77,7 @@ const Canvas = ( { post, comments, version } ) => {
             }
 
             function draw(event){
+                // console.log('draw event')
                 if(is_drawing){
                     let rect = this.getBoundingClientRect()
                     context.lineTo(event.clientX-rect.left, 
@@ -93,6 +94,7 @@ const Canvas = ( { post, comments, version } ) => {
             }
 
             function stop (event){
+                // console.log('stop event')
                 if (is_drawing){
                     context.stroke()
                     context.closePath()
@@ -111,6 +113,7 @@ const Canvas = ( { post, comments, version } ) => {
         
         // clear function. note it clears the background as well. may have to look up a way that doesn't clear the image
         function clearCanvas(){
+            // console.log('clear - clearing canvas')
             context.clearRect(0, 0, canvas.width, canvas.height);
 
             restoreArray=[]
@@ -128,11 +131,13 @@ const Canvas = ( { post, comments, version } ) => {
 
         // undo 
         function undoCanvas(){
+            // console.log('start undoing')
             if (restoreIndex<=0){
+                // console.log('undo - clearing canvas')
                 clearCanvas()
             }else{
                 // console.log(post.comments)
-
+                // console.log('undoing last action')
                 restoreIndex-=1
                 restoreArray.pop()
                 // restores data from last spot
@@ -159,11 +164,13 @@ const Canvas = ( { post, comments, version } ) => {
 
         // copying image to function
         function copyImageToCanvas(){
+            // console.log('attempting to draw.')
             let img = new Image()
             img.src = post.selectedFile
             context.drawImage(
                 img, 0, 0, canvas.width, canvas.height
             )
+            // console.log('drawing.')
         }
 
         // setTimeout(()=>{

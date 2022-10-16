@@ -58,7 +58,7 @@ const PostDetails = () => {
     }
 
 // console.log(post.comments)
-console.log(post.users)
+// console.log(post.users)
 
     return(
     <Paper style={{ padding: '20px', borderRadius:'15px' }} elevation= {6}>
