@@ -24,9 +24,9 @@ app.use('/posts', postRoutes)
 // for signin/signup
 app.use('/user', userRoutes)
 
-// for hosting
+// for hosting, just to know server is running
 app.get('/', (req, res) => {
-    res.send('App is running.')
+    res.send('Etch app is running.')
 })
 
 const PORT = process.env.PORT || 5500;

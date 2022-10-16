@@ -3,7 +3,6 @@ import { Card, CardActions, CardContent, CardMedia, Button, Typography, ButtonBa
 import useStyles from './styles'
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import DeleteIcon from '@material-ui/icons/Delete';
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import moment from 'moment';
 import { useDispatch } from 'react-redux'
 import {useNavigate} from 'react-router-dom'
@@ -14,8 +13,6 @@ import { deletePost, likePost } from '../../../actions/posts'
 import baseImg from '../../../images/baseImg.jpg'
 
 import ShareFunction from '../../PostDetails/ShareFunction'
-
-import GetId from '../../PostDetails/GetId'
 
 // destructuring the prop to just post
 const Post = ( {post, setCurrentId} ) => {

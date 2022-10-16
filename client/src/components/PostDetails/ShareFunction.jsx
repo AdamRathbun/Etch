@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import { Typography, TextField, Button } from '@material-ui/core'
 
 import useStyles from './styles'
@@ -13,7 +13,7 @@ const ShareFunction = ({ post, userId }) => {
     const [showId, setShowId] = useState(false)
     const [formData, setFormData] = useState(post.users)
 
-    const [newId, setNewId] = useState('')
+    // const [newId, setNewId] = useState('')
 
     const dispatch = useDispatch()
 

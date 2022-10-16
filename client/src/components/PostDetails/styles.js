@@ -167,14 +167,6 @@ export default makeStyles((theme) => ({
     cursor: 'pointer',
   },
 
-  getIdSection:{
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'start',
-    marginTop: '8px',
-  },
-
-
   containIdSection:{
     display: 'flex',
     flexDirection: 'row',
@@ -187,11 +179,12 @@ export default makeStyles((theme) => ({
     marginLeft: '20px',
     // height: '30px',
   },
+  
   getIdSection:{
     marginTop: '33px',
     width: '250px',
     marginLeft: '22px',
-    fontSize: '16px',
+    fontSize: '18px',
   },
 
   addIdButton:{
