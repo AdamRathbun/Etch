@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { TextField, Button, Typography, Paper } from '@material-ui/core'
 import FileBase from 'react-file-base64'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 import useStyles from './styles'
 import { createPost, updatePost } from '../../actions/posts'
@@ -25,6 +26,7 @@ const Form = ({ currentId, setCurrentId }) => {
 
     //dispatch actions
     const dispatch = useDispatch();
+    const navigate = useNavigate()
 
     const classes = useStyles()
 
@@ -44,6 +46,8 @@ const Form = ({ currentId, setCurrentId }) => {
             dispatch(updatePost(currentId, {...postData, name: user?.result?.name }));
             clear();
         }
+        // navigate('/')
+        // window.location.reload()
     }
 
     if (!user?.result?.name){
@@ -101,7 +105,7 @@ const getDimensions = (base64) => {
         <Paper className={classes.paper}>
             <form autoComplete='off' noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit} >
                 {/* ternary for displaying Creating vs Editing a project */}
-                <Typography variant='h6'>{currentId ? 'Editing' : 'Creating'} a project</Typography>
+                <Typography variant='h6'>{currentId ? 'Edit' : 'Create'} a project</Typography>
                 {/* remember the entire data from post stored in the postData object and each of that object is a specific text field. The onChange copies over previous state and only changes creator property's value. can similary do for other properties. it sets the state using an object*/}
                 <TextField name='title' variant='outlined' label='Title' fullWidth value={postData.title} onChange={(e)=>setPostData({ ...postData, title: e.target.value })} />
                 <TextField name='message' variant='outlined' label='Message' fullWidth value={postData.message} onChange={(e)=>setPostData({ ...postData, message: e.target.value })} />
@@ -120,6 +124,11 @@ const getDimensions = (base64) => {
                 </div>
                 <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
                 <Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
+                <Typography variant='p' className={classes.instructions} >
+                    {/* Instructions: Login first. Input projects details including image. Click on a project to open it up, with markup tools and comments below the image. Can share project with additional users by entering the ID into "Add User" field. */}
+
+                    <strong>Instructions:</strong> Add image to project. Click project to open it with markup tools & comments. Share project by entering friend's ID into "Add User".
+                </Typography>
             </form>
         </Paper>
         

@@ -47,7 +47,8 @@ const Navbar = () => {
             {/* component Link points to home with '/' route */}
             <Typography component={Link} to='/' className={classes.heading} variant='h2' align='center'>Etch</Typography>
             {/* note change below when I can start Etch projects */}
-            <img className={classes.image} src={projectImg} alt='Etch Project' height='51'></img>
+            <img className={classes.image} src={projectImg} alt='Etch' height='51'></img>
+            <Typography className={classes.heading2} variant='p' align='center'>Your easy creative collaboration tool</Typography>
         </div>
         <Toolbar className={classes.toolbar}>
             {/* if user logged in/unlogged */}

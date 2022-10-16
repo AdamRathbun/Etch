@@ -21,4 +21,8 @@ export default makeStyles((theme) => ({
   buttonSubmit: {
     marginBottom: 10,
   },
+  instructions: {
+    fontFamily: "Arial",
+    marginTop: '15px',
+  },
 }));

@@ -134,7 +134,7 @@ export const getPosts = async (req, res)=>{
     try{
         // const postMessages=await PostMessage.find().sort({$natural:-1});
 
-        const postMessages = await PostMessage.find({ users: req.userId }) 
+        const postMessages = await PostMessage.find({ users: req.userId })
 
         //returning postMessages as an array after a 200 OK status
         res.status(200).json(postMessages);

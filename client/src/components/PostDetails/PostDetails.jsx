@@ -21,7 +21,6 @@ const PostDetails = () => {
     const [comments, setComments] = useState(post?.comments)
 
     // for image version control
-    // const [selectedFile, setSelectedFile] = useState(post?.selectedFile)
     const [version, setVersion] = useState(post?.version)
 
     const userId = localStorage.getItem('profile') ? JSON.parse(localStorage.getItem('profile')).result._id : null
@@ -37,10 +36,6 @@ const PostDetails = () => {
     useEffect(()=>{
         dispatch(getPost(id))
     }, [id])
-
-    // localStorage.getItem('profile', JSON.stringify({ ...action?.data }))
-    // let profile=localStorage.getItem('profile')
-    // console.log(JSON.parse(profile).result._id)
 
     // for comments. can't put it after
     useEffect(()=>{

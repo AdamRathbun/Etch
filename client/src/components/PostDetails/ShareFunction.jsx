@@ -17,9 +17,6 @@ const ShareFunction = ({ post, userId }) => {
 
     const dispatch = useDispatch()
 
-    // const [comment, setComment] = useState('')
-    // const user = localStorage.getItem('profile') ? JSON.parse(localStorage.getItem('profile')).result._id : null
-    // console.log(userA)
     const user = userId
 
     const getId = function() {
@@ -29,19 +26,17 @@ const ShareFunction = ({ post, userId }) => {
     const addUser = () => {
         // setFormData(prev => [...prev, newId]);
         dispatch(updatePost(post._id, {...post, users: formData }));
-        // alert('User added!')
+        alert('User added!')
+        setFormData(prev=>prev='')
     }
-    // console.log(post.users)
-    // console.log(formData)
+
     return (
         <div>
-            {/* <form className={classes.form} >Enter Id</form> */}
             <div className={classes.containIdSection} >
-                {/* <TextField className={classes.enterIdSection} variant='outlined' label='Copy user id to add them' value={newId} onChange={(e)=> setNewId(e.target.value)}/> */}
                 <Button className={classes.addIdButton} height='auto' color='primary' variant='contained' onClick={addUser}>
                     Add user
                 </Button>
-                <TextField className={classes.enterIdSection} variant='outlined' label='Copy User ID Here' onChange={(e)=> setFormData(prev => [...prev, e.target.value])}/>
+                <TextField className={classes.enterIdSection} variant='outlined' label='Copy user ID here' onChange={(e)=> setFormData(prev => [...prev, e.target.value])}/>
             </div>
 
             <div className={classes.containIdSection}>

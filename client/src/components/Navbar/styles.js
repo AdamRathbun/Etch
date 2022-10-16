@@ -40,4 +40,9 @@ export default makeStyles((theme) => ({
     color: theme.palette.getContrastText(deepPurple[500]),
     backgroundColor: deepPurple[500],
   },
+  heading2: {
+    paddingTop: '30px',
+    fontFamily: 'Arial',
+    color: '#1e1c94',
+  },
 }));
