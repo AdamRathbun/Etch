@@ -1,5 +1,5 @@
 # Etch
-Etch is a creative collaboration tool that helps people who are working remotely on design projects get them where they need to be. Users can make an account, log in, and create projects that they can then share, mark up and comment for creative editing. 
+Etch is a creative collaboration tool that helps remote team members easily work together, especially when it comes to creative projects. Etch comes with accessible markup tools, comments, and project sharing to help you work with others and get your designs where they need to be.
 
 ## Video demo: https://soapbox.wistia.com/videos/hyu7fA6EOa
 
