@@ -21,7 +21,7 @@ Given more time, I would've liked to implement proper version control. I would'v
 
 In the project directory, you can run:
 
-# `npm start` in both Client and Server directories
+## `npm start` in both Client and Server directories
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser. 
