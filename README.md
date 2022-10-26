@@ -17,13 +17,10 @@ After making an account and logging in, users can create projects (with key proj
 
 Given more time, I would've liked to implement proper version control. I would've also liked to include an additional "sticky comment" feature that allows the user to attach a comment to a sticky on the image that highlights the connected comment when clicked on.
 
-## Available Scripts
+## Instructions
 
-In the project directory, you can run:
-
-## `npm start` in both Client and Server directories
+Inside both the Client and the Server directory, run "npm install" and then "npm start".
+Make sure to fill in PORT, CONNECTION_URL, and JWT_SECRET in .env in the Server directory. Need to set up a MongoDB database and link to CONNECTION_URL.
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser. 
-
-Make sure to create PORT, CONNECTION_URL, and JWT_SECRET in the .env in the server folder.
