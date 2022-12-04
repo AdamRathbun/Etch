@@ -9,7 +9,7 @@ Etch is a full-stack creative collaboration tool that helps remote team members 
 
 ## How It's Made:
 
-**Tech used:** JavaScript, React, MongoDB, Mongoose, Node, Express, Redux, HTML, CSS, and Canvas.
+**Tech used:** JavaScript, React, MongoDB, Mongoose, Node, Express, Redux, HTML, CSS, and Canvas. (RESTful API)
 
 After making an account and logging in, users can create projects (with key project details like image, title, description, etc.). Users can then click on a project to open it up, where they can mark up the design image with various drawing tools and write comments to designate creative changes. Additional features include approvals, project deletion, project sharing, and authentication. Etch was built while following Model-View-Controller architecture.
 
