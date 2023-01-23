@@ -11,7 +11,6 @@ import { getPosts } from '../../actions/posts'
 
 const Home = () => {
     // project id, starting with null if id not selected. current id passed to Form below. note the setter is passed to both Posts component and Form component below
-    // set to null or 0?
     const [currentId, setCurrentId] = useState(0);
 
     //styles
