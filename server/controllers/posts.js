@@ -4,7 +4,6 @@ import PostMessage from '../models/postMessage.js'
 
 //create posts. 
 export const createPost = async (req, res) => {
-    //req.body is built-in
     const post = req.body;
     // specifies the creator userId and creation date for each post
     const newPostMessage = new PostMessage({ ...post, creator: req.userId, createdAt: new Date().toISOString(), users: [req.userId]  } )
