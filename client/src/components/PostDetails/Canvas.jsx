@@ -7,7 +7,7 @@ import { updatePost } from '../../actions/posts'
 import useStyles from './styles'
 // import { commentPost } from '../../actions/posts'
 
-const Canvas = ( { post, comments, version } ) => {
+const Canvas = ( { post, comments } ) => {
     const classes=useStyles()
     const dispatch = useDispatch();
 
