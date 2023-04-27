@@ -3,11 +3,9 @@ import { Paper, Typography, CircularProgress, Divider, Button } from '@material-
 import { useDispatch, useSelector } from 'react-redux'
 import moment from 'moment'
 import { useParams, useNavigate } from 'react-router-dom'
-// remember moment is for time track
 
 import useStyles from './styles'
 import { getPost } from '../../actions/posts'
-import baseImg from '../../images/baseImg.jpg'
 import CommentSection from './CommentSection'
 import { updatePost } from '../../actions/posts'
 
@@ -30,24 +28,16 @@ const PostDetails = () => {
     const classes = useStyles()
     // project id
     const { id } = useParams()
-    // console.log(id)
-    // tied to API that grabs the specific post info in actions/posts.js
 
     useEffect(()=>{
         dispatch(getPost(id))
     }, [id])
 
-    // for comments. can't put it after
     useEffect(()=>{
         if(comments){
             dispatch(updatePost(post._id, {...post, comments: post.comments}));
         }
     }, [comments])
-
-    // for image version control
-    // useEffect(()=>{
-    //     setVersion((prev=>prev+1))
-    // }, [version])
 
     if(!post) return null;
 
@@ -57,8 +47,7 @@ const PostDetails = () => {
         </Paper>
     }
 
-// console.log(post.comments)
-// console.log(post.users)
+console.log(post.users)
 
     return(
     <Paper style={{ padding: '20px', borderRadius:'15px' }} elevation= {6}>
