@@ -9,7 +9,6 @@ const authReducer = (state={authData:null}, action) => {
             localStorage.setItem('profile', JSON.stringify({ ...action?.data }));
             return { ...state, authData: action?.data };
         case LOGOUT:
-            // note this clears entire local storage. if I use AJAX later, may change.
             localStorage.clear();
             return { ...state, authData: null }
         default:
