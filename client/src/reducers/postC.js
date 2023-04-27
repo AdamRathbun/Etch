@@ -1,10 +1,7 @@
-//reducer for posts. note I am using this in sibling index.js as combineReducers
-
 import { COMMENT } from '../constants/actionTypes.js';
 
 
 export default (state={posts:[]}, action) => {
-    //switch case for each action.type, will add more logic
     switch (action.type){
 
         case COMMENT:
