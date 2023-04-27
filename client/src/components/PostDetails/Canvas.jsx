@@ -1,28 +1,20 @@
 import React, { useState, useEffect } from 'react'
-// import { Typography, TextField, Button } from '@material-ui/core'
 import { useDispatch } from 'react-redux'
 import { updatePost } from '../../actions/posts'
-// import { CirclePicker } from "react-color";
 
 import useStyles from './styles'
-// import { commentPost } from '../../actions/posts'
 
 const Canvas = ( { post, comments } ) => {
     const classes=useStyles()
     const dispatch = useDispatch();
-
-    // const [width, setWidth] = useState(post.width)
     
     useEffect(() => {
         if(document.getElementById('canvas')){
             const canvas=document.getElementById('canvas')
-            // canvas.width=window.innerWidth-60;
             canvas.width = post.width
             canvas.height= post.height
 
-            // console.log(canvas)
             let context=canvas.getContext("2d")
-            // console.log(context)
 
             context.fillStyle='white'
             context.fillRect(0, 0, canvas.width, canvas.height)
@@ -64,7 +56,6 @@ const Canvas = ( { post, comments } ) => {
             document.addEventListener('beforeunload', copyImageToCanvas)
         
             function start(event){
-                // console.log('start event')
                 is_drawing=true;
                 context.beginPath();
 
@@ -77,7 +68,6 @@ const Canvas = ( { post, comments } ) => {
             }
 
             function draw(event){
-                // console.log('draw event')
                 if(is_drawing){
                     let rect = this.getBoundingClientRect()
                     context.lineTo(event.clientX-rect.left, 
@@ -88,13 +78,11 @@ const Canvas = ( { post, comments } ) => {
                     context.lineCap = 'round'
                     context.lineJoin = 'round'
                     context.stroke()
-                    // console.log('drawing')
                 }
                 event.preventDefault()
             }
 
             function stop (event){
-                // console.log('stop event')
                 if (is_drawing){
                     context.stroke()
                     context.closePath()
@@ -107,37 +95,24 @@ const Canvas = ( { post, comments } ) => {
                     restoreArray.push(context.getImageData(0, 0, canvas.width, canvas.height))
                     restoreIndex+=1
                 }
-                // console.log(restoreArray)
                 
             }
         
-        // clear function. note it clears the background as well. may have to look up a way that doesn't clear the image
+        // clear function
         function clearCanvas(){
-            // console.log('clear - clearing canvas')
             context.clearRect(0, 0, canvas.width, canvas.height);
 
             restoreArray=[]
             restoreIndex=-1
             copyImageToCanvas()
         }
-        
-        // async function clearCanvas(){
-        //     await context.clearRect(0, 0, canvas.width, canvas.height);
-
-        //     restoreArray=[]
-        //     restoreIndex=-1
-        //     copyImageToCanvas()
-        // }
 
         // undo 
         function undoCanvas(){
-            // console.log('start undoing')
             if (restoreIndex<=0){
-                // console.log('undo - clearing canvas')
                 clearCanvas()
             }else{
-                // console.log(post.comments)
-                // console.log('undoing last action')
+
                 restoreIndex-=1
                 restoreArray.pop()
                 // restores data from last spot
@@ -147,15 +122,6 @@ const Canvas = ( { post, comments } ) => {
 
         // save canvas
         function saveCanvas(){
-            // if (post.version===version){
-            //     let editedImg=canvas.toDataURL("image/jpeg", 1.0)
- 
-            //     dispatch(updatePost(post._id, {...post, selectedFile: editedImg, comments:comments}));
-            //     alert('Changes saved!')
-            //     console.log(post.version, version)
-            // }else{
-            //     alert('Image outdated, refresh.')
-            // }
             let editedImg=canvas.toDataURL("image/jpeg", 1.0)
  
             dispatch(updatePost(post._id, {...post, selectedFile: editedImg, comments:comments}));
@@ -164,29 +130,13 @@ const Canvas = ( { post, comments } ) => {
 
         // copying image to function
         function copyImageToCanvas(){
-            // console.log('attempting to draw.')
             let img = new Image()
             img.src = post.selectedFile
             context.drawImage(
                 img, 0, 0, canvas.width, canvas.height
             )
-            // console.log('drawing.')
         }
 
-        // setTimeout(()=>{
-        //     copyImageToCanvas()
-        // })
-
-        // const isCanvasBlank = function() {
-        //     const pixelBuffer = new Uint32Array(
-        //       context.getImageData(0, 0, canvas.width, canvas.height).data.buffer
-        //     );
-          
-        //     return !pixelBuffer.some(color => color !== 0);
-        //   }
-        //   console.log(isCanvasBlank())
-
-        // window.onload = copyImageToCanvas()
         canvas.onload = copyImageToCanvas()
 
         }
