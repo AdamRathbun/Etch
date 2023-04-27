@@ -11,7 +11,7 @@ import projectImg from '../../images/etch.png'
 
 const Navbar = () => {
     const classes = useStyles()
-    // history is now navigate and it redirects to another url
+    // navigate redirects to another url
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const location = useLocation()
@@ -38,7 +38,6 @@ const Navbar = () => {
 
         setUser(JSON.parse(localStorage.getItem('profile')))
     }, [location])
-    // ^useLocation triggers on any URL change, but for some reason the code keeps bugging me about it
 
     return(
 
