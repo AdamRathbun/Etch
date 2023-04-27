@@ -10,7 +10,6 @@ import { commentPost, updatePost } from '../../actions/posts'
 const CommentSection = ({ post }) => {
     const classes=useStyles()
     const [comments, setComments] = useState(post?.comments)
-    // const [comment, setComment] = useState('')
     const [comment, setComment] = useState( {content: '', resolved: false} )
     const user = JSON.parse(localStorage.getItem('profile'))
     const dispatch = useDispatch()
@@ -18,11 +17,9 @@ const CommentSection = ({ post }) => {
     // dispatches each comment to db with user name and comment itself
     const handleClick = async () => {
         const finalComment = `${user.result.name}: ${comment}`
-        // const newComments = await dispatch(commentPost(finalComment, post._id))
         const newComments = await dispatch(commentPost({content: finalComment, resolved: false}, post._id))
 
         setComments(newComments)
-        // setComment('')
         setComment({content: '', resolved: false})
 
         // for auto scrolling the comment to most recent
@@ -43,10 +40,7 @@ const CommentSection = ({ post }) => {
                             { c.resolved===true && (
                             <CheckIcon className={classes.checkMark}/>
                             )}
-                            {/* <Button onClick={handleResolve} color='primary' variant='contained'> Resolve </Button> */}
-                            {/* <Button className={classes.resolveBtn} color='primary' variant='contained'> Resolve </Button> */}
-                            {/* <CheckCircleOutlineIcon className={classes.resolveBtn} variant='contained' onClick={(e) => { handleComment(e) }}/> */}
-                            {/* onChange={(e)=>setPostData({ ...postData, title: e.target.value })} */}
+
                         </Typography>
                     ))}
                     {/* to help auto scroll to recent comment */}
