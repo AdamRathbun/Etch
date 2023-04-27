@@ -3,6 +3,7 @@ import { Card, CardActions, CardContent, CardMedia, Button, Typography, ButtonBa
 import useStyles from './styles'
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import DeleteIcon from '@material-ui/icons/Delete';
+import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import moment from 'moment';
 import { useDispatch } from 'react-redux'
 import {useNavigate} from 'react-router-dom'
@@ -14,11 +15,9 @@ import baseImg from '../../../images/baseImg.jpg'
 
 import ShareFunction from '../../PostDetails/ShareFunction'
 
-// destructuring the prop to just post
 const Post = ( {post, setCurrentId} ) => {
     const classes = useStyles()
 
-    // this is just for the delete action so far
     const dispatch = useDispatch()
 
     const navigate = useNavigate()
@@ -40,17 +39,6 @@ const Post = ( {post, setCurrentId} ) => {
                  {/* post creation timestamp */}
                 <Typography variant='body2'>{moment(post.createdAt).fromNow()}</Typography>
             </div>
-            {/* project edit button. note the id is tied to Posts/Posts.js and src/App.js. only creator can edit project */}
-            {/* {(user?.result?._id===post?.creator) && (
-            <div className={classes.overlay2}>
-                <Button 
-                    style={{color: 'white'}} 
-                    size='small' 
-                    onClick={() => setCurrentId(post._id)}>
-                    <MoreHorizIcon fontSize='medium' />
-                </Button>
-            </div>
-            )} */}
             <div className={classes.details}>
                 {/* for post tags */}
                 <Typography variant='body2' color='textSecondary'>{post.tags.map((tag)=>`#${tag} `)}</Typography>
