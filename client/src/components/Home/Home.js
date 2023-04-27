@@ -1,28 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Grow, Grid } from '@material-ui/core'
-//can dispatch an action
 import { useDispatch } from 'react-redux';
 
 import Posts from '../Posts/Posts'
 import Form from '../Form/Form'
 import { getPosts } from '../../actions/posts'
-// import useStyles from '../../styles'
 
 
 const Home = () => {
     // project id, starting with null if id not selected. current id passed to Form below. note the setter is passed to both Posts component and Form component below
     const [currentId, setCurrentId] = useState(0);
 
-    //styles
-    // const classes = useStyles()
-    
-    //dispatch hook
     const dispatch=useDispatch()
     //useEffect with dispatch and dispatch dependency array. tied to: ./actions/posts
     useEffect(()=>{
         dispatch(getPosts())
-        //note dependency array triggers getPosts refresh on every dispatch and whenever the currentId changes. Even though this triggers getPosts refresh without currentId, I added it anyways. currentId ties to the clear function in components/Form/Form.js b.c that changes the Id on a clear.
+        //note dependency array triggers getPosts refresh on every dispatch and whenever the currentId changes.
     }, [currentId, dispatch])
+
 
     return (
         // note Grow is simple animation
