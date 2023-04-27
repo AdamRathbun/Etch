@@ -14,7 +14,7 @@ const auth = async (req, res, next) => {
 
         if(token){
             // gets the data from each specific token
-            // note the secret 'Test' has to be the same one used when the token is created in ../controllers/user.js
+            // note the secret has to be the same one used when the token is created in ../controllers/user.js
             decodedData = jwt.verify(token, process.env.JWT_SECRET)
 
             req.userId = decodedData?.id
