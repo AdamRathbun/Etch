@@ -5,8 +5,6 @@ import dotenv from 'dotenv'
 
 
 
-// bcrypt hashes the password
-// jwt JSON Web Tokens store the user in the browser temporarily
 
 export const signin = async(req, res)=>{
     const {email, password} = req.body;
