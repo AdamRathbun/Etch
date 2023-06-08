@@ -6,7 +6,7 @@ const auth = async (req, res, next) => {
     dotenv.config()
 
     try {
-        // grabbing token (JWT) from the frontend to check before an user likes, deletes, etc.
+        // grabbing token (JWT) to check before an user likes, deletes, etc.
         const token = req.headers.authorization ? req.headers.authorization.split(' ')[1] : null
 
         let decodedData;
